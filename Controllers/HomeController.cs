@@ -86,7 +86,7 @@ namespace Questionnaire.Controllers
             }
             catch (Exception e)
             {
-                response.AddError("hidden", "Неожиданная ошибка на сервере. Попробуйте еще раз позже.");
+                response.AddError("hidden", "Неожиданная ошибка на сервере. Скорее всего недодасточно прав на создание файла анкеты.");
             }
 
             return new NewtonsoftJsonResult(response);
