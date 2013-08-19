@@ -53,7 +53,7 @@
  * Feature detection
  */
 var feature = {};
-feature.fileapi = $("<input type='file'/>").get(0).files !== undefined;
+feature.fileapi = false;
 feature.formdata = window.FormData !== undefined;
 
 var hasProp = !!$.fn.prop;

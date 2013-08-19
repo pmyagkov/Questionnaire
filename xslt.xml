@@ -1,0 +1,129 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type='text/xsl' href='convert.xsl'?>
+<root>
+    <userData>
+        <cv type="file">
+            <text>Резюме до 250КБ</text>
+        </cv>
+        <mk type="text">
+            <text>Ссылка на профиль в Моем Круге</text>
+        </mk>
+        <name type="text">
+            <text>Имя, Фамилия</text>
+        </name>
+        <phone type="text">
+            <text>Телефон</text>
+            <hint>Пожалуйста, укажите код города</hint>
+        </phone>
+        <email type="text">
+            <text>Email</text>
+            <validators>
+                <validator rule="required"><![CDATA[Не заполнено поле "E-mail."]]></validator>
+                <validator rule="email">Неверный адрес электронной почты.</validator>
+            </validators>
+        </email>
+        <additional type="textarea">
+            <text>Дополнительные сведения</text>
+        </additional>
+        <recommend type="select">
+            <text>Откуда вы узнали о нашем предложении?</text>
+            <options>
+                <option value="от HR-менеджера Яндекса">от HR-менеджера Яндекса</option>
+                <option value="Я.Субботник">Я.Субботник</option>
+                <option value="Yet another Conference">Yet another Conference</option>
+                <option value="на другой конференции">на другой конференции</option>
+                <option value="из поиска">из поиска</option>
+                <option value="из поиска">из поиска</option>
+                <option value="другое">другое</option>
+            </options>
+            <validators>
+                <validator rule="required">Укажите, пожалуйста, откуда вы узнали о нашем предложении.</validator>
+            </validators>
+        </recommend>
+        <agree type="checkbox">
+            <text>Я даю свое согласие на передачу в ООО «ЯНДЕКС» резюме и/или анкеты, содержащих мои персональные данные, и согласен с тем, что они будут храниться в ООО «ЯНДЕКС» в течение 5 лет и будут обрабатываться исключительно для целей предложения мне вакансий группы компаний «ЯНДЕКС», в соответствии с Федеральным законом «О персональных данных».</text>
+            <validators>
+                <validator rule="required">Подтвердите, пожалуйста, своё согласие на передачу анкеты с вашими персональными данными.</validator>
+            </validators>
+        </agree>
+
+    </userData>
+    <questions>
+        <question name="q1">
+            <text>Год рождения.</text>
+        </question>
+        <question name="q2">
+            <text>Город, в котором вы живёте.</text>
+        </question>
+        <question name="q3">
+            <text>Вуз, факультет, специальность, кафедра.</text>
+        </question>
+        <question name="q4">
+            <text>Год окончания вуза.</text>
+        </question>
+        <question name="q5">
+            <text>Уровень владения английским язык:</text>
+            <options>
+                <option value="начальный">начальный</option>
+                <option value="средний">средний</option>
+                <option value="свободное владение">свободное владение</option>
+            </options>
+        </question>
+        <question name="q6">
+            <text>Чего вы ожидаете от участия в Школе?</text>
+        </question>
+        <question name="q7">
+            <text>Откуда вы о нас узнали?</text>
+        </question>
+        <question name="q8">
+            <text>Сколько времени вы были бы готовы уделять стажировке или работе в Яндексе?</text>
+        </question>
+        <question name="q9">
+            <text>Расскажите о вашем опыте разработки. Нам будет интересно всё — как серьезный интерфейс, так и просто домашняя страничка.</text>
+        </question>
+        <question name="q10">
+            <text>Если вы где-нибудь работали, расскажите, какие у вас были должностные обязанности и был ли опыт работы в команде.</text>
+        </question>
+        <question name="q11">
+            <text>Перечислите, какими программными продуктами вы пользуетесь в своей работе — от редактора до специализированных утилит (Intellij Idea, Node.js, Uglify.js, GNU Make). Для каждого инструмента укажите, какие задачи вы с помощью него решаете и почему выбрали именно его.</text>
+        </question>
+        <question name="q12">
+            <text>Пользуетесь ли вы командной строкой? Какими командами вы пользуетесь и какие задачи вы решаете с их помощью? С какими программами вы преимущественно или полностью взаимодействуете через интерфейс командной строки?</text>
+        </question>
+        <question name="q13">
+            <text>
+                <![CDATA[Напишите на JavaScript функцию, которая выводит список всех чисел, которые равны сумме факториалов своих цифр. Пример такого числа:
+                    <p class="b-static-text b-static-text_weight_normal">4! + 0! + 5! + 8! + 5! = 40585</p>
+                    В качестве ответа на вопрос пришлите ссылку на <a href="http://jsfiddle.net/" class="b-link" target="_blank">http://jsfiddle.net/</a> с вашим кодом или на ваш репозиторий на <a href="https://github.com/" class="b-link" target="_blank">https://github.com/</a>.
+                ]]>
+            </text>
+        </question>
+        <question name="q14">
+            <text>
+                <![CDATA[Вы — пилот грузового межгалактического корабля. Ваша работа — перевозка грузов с одной планету на другую. Грузоподъемность вашего корабля ограничена, поэтому за один рейс вы можете перевезти не более N кг полезного груза. Ваш корабль умеет сообщать свое состояние (местоположение и степень загруженности), а также летать в любую точку пространства. Каждая планета может содержать на себе груз, который можно взять. Также на каждой планете груз можно оставить.
+                    <p>Задание</p><p>Даны незавершенные интерфейсы корабля и планеты. Напишите недостающий код.</p><p>Полное условие задачи доступно на</p>
+                    <p><a href="https://github.com/yandex-shri/introtask-space" class="b-link" target="_blank">https://github.com/yandex-shri/introtask-space</a></p>
+                    В качестве ответа на вопрос пришлите ссылку на <a href="http://jsfiddle.net/" class="b-link" target="_blank">http://jsfiddle.net/</a> с вашим кодом или на ваш репозиторий на <a href="https://github.com" class="b-link" target="_blank">https://github.com</a>
+                ]]>
+
+            </text>
+        </question>
+        <question name="q15">
+            <text>
+                <![CDATA[
+
+                    Сверстайте форму-анкету с нашими заданиями для кандидатов. Страница должна работать в следующих браузерах: MSIE (8, 9, 10), Google Chrome (26, 27), Firefox (20, 21), Opera (12.15, 12.14), Яндекс.Браузер 1.5.
+                    По возможности используйте приёмы безопасной деградации CSS. Страница должна содержать интерактив, реализованный с помощью JS и jQuery.
+                    Это может быть:
+                    <ul class="b-list b-list_type_bullet"><li>проверка полноты и правильности заполнения полей (где это возможно);</li><li>возможность свернуть и развернуть разделы (аккордеон);</li><li>индикатор заполнения анкеты;</li><li>что-нибудь ещё.</li></ul>
+                    <p>Подумайте над тем, как эти данные будут отправляться на сервер.</p><p> Будет плюсом, если вы сверстаете страницу, используя БЭМ.</p><p>Дополнительные задания:</p>
+                    <ul class="b-list b-list_type_numeric">
+                    <li>Выполните задание про форму-анкету, используя один из классических шаблонизаторов: Handlebars, mustache, Dust, Jade и т.п.</li>
+                    <li>Выполните задание про форму-анкету, используя один из экзотических шаблонизаторов: XSLT, YATE, BEMHTML и т.п.</li></ul>
+                    <p>Разработку необходимо вести на <a href="https://github.com/" class="b-link" target="_blank">https://github.com/</a>. В качестве ответа на вопрос пришлите ссылку на проект.</p>
+                    ]]>
+            </text>
+        </question>
+    </questions>
+
+</root>

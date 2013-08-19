@@ -1,17 +1,21 @@
 jQuery.fn.unanswered = function (options) {
     var $control = $(this);
 
+    var isAnswered = function ($e) {
+        if ($e.is(":radio")) {
+            return $e.is(":checked");
+        }
+        else {
+            return !!$e.val().trim();
+        }
+
+    }
+
     var getUnanswered = function () {
         var result = _.groupBy($("[data-question]:not(a)"), function (e) { return $(e).data("question");});
         result = _(result).filter(function (e) {
             var some =  _.every(e, function (el) {
-                var $e = $(el);
-                if ($e.is(":radio")) {
-                    return !$e.is(":checked");
-                }
-                else {
-                    return !$e.val();
-                }
+                return !isAnswered($(el));
             });
 
             return some;
@@ -29,13 +33,6 @@ jQuery.fn.unanswered = function (options) {
 
     $control.text(getUnanswered());
 
-
-
-
-
-
-
-
     jQuery.expr.pseudos.answered = jQuery.expr.createPseudo(function(arg) {
         return function(elem) {
             var $elem = $(elem).closest("[data-question]");
@@ -45,14 +42,7 @@ jQuery.fn.unanswered = function (options) {
             }
 
             return _.some($("[data-question=" + $elem.data("question") + "]"), function (e) {
-                var $e = $(e);
-                if ($e.is(":radio")) {
-                    return $e.is(":checked");
-                }
-                else {
-                    return !!$e.val();
-                }
-
+                return isAnswered($(e));
             });
         };
     });
@@ -77,7 +67,6 @@ jQuery.fn.accordion = function (options) {
                     .next("tr").hide();
                 if (!$link.is(":answered")) {
                     $link.addClass("b-task__accord-pointer_answer_none");
-
                 }
             }
         });
@@ -90,8 +79,12 @@ jQuery.fn.toTheTop = function (options) {
     var $panel = $(this);
     var $window = $(window);
     $window.on("scroll", function () {
-        $(".b-rest-questions")[$window.scrollTop() > 200 ? "show" : "hide"]();
-        $panel[$window.scrollTop() > $window.height() / 2 ? "show" : "hide"]();
+        if ($window.scrollTop() > 200) {
+            $(".b-rest-questions").add($panel).show();
+        }
+        else {
+            $(".b-rest-questions").add($panel).hide();
+        }
     });
 
     $panel.on("click", function (e) {
@@ -99,5 +92,4 @@ jQuery.fn.toTheTop = function (options) {
     })
 
     return this;
-
 }

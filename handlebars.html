@@ -1,0 +1,236 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!--suppress ALL -->
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <title>Компания Яндекс&nbsp;—&nbsp;Анкета второй Школы разработки интерфейсов в Москве</title>
+    <link rel="stylesheet" href="content/style.css">
+
+
+    <script type="text/javascript" src="scripts/lib/jquery.min.js"></script>
+    <script type="text/javascript" src="scripts/lib/jquery.form.min.js"></script>
+    <script type="text/javascript" src="scripts/lib/jquery.validate.min.js"></script>
+    <script type="text/javascript" src="scripts/lib/jquery.validate.unobtrusive.min.js"></script>
+    <script type="text/javascript" src="scripts/custom/jquery.validate.unobtrusive.adapters.js"></script>
+
+
+    <script type="text/javascript" src="scripts/lib/underscore.js"></script>
+    <script type="text/javascript" src="scripts/lib/handlebars.js"></script>
+    <script type="text/javascript" src="scripts/custom/handlebars.helpers.js"></script>
+
+    <script type="text/javascript" src="scripts/custom/controls.js"></script>
+
+    <script type="text/javascript" src="scripts/custom/userData.js"></script>
+    <script type="text/javascript" src="scripts/custom/handlebars.init.js"></script>
+
+    <script type="text/x-handlebars-template" id="task-template">
+        <form method="POST" action="Home/Save" enctype="multipart/form-data">
+            
+            <div class="b-task">
+                <table class="b-task__table">
+                    {{#if questions.length}}
+
+                    <tr>
+                        <td colspan="2">
+                            <div class="b-static-text">
+                                <h3>Заполните анкету</h3>
+                            </div>
+                        </td>
+                    </tr>
+                    {{/if}}
+
+
+                    {{#each questions}}
+                    {{setNumber @index ../questions.length}}
+
+                    <tr>
+                        <td class="b-task__left_col">
+                            <a class="b-task__accord-pointer" data-question="q{{number}}">
+                                <span class="b-task__accord-icon"></span>
+                                <label class="b-task__number">
+                                    <em>Вопрос {{number}}</em>
+                                </label>
+                            </a>
+                        </td>
+                        <td class="b-task__right_col">
+                            <div class="b-static-text b-static-text_weight_bold">
+                                <p>{{{text}}}</p>
+                                {{#if options.length}}
+                                <ul class="b-options">
+                                    {{#each options}}
+                                    {{setNumber @index ../options.length}}
+                                    <li>
+                                        <input type="radio" name="q{{../number}}_o" id="q{{../number}}_o{{number}}"
+                                               class="q{{../number}}" data-question="q{{../number}}"
+                                               value="{{value}}">
+                                        <label for="q{{../number}}_o{{number}}">{{text}}{{#if last}};{{else}},{{/if}}</label>
+                                    </li>
+                                    {{/each}}
+                                </ul>
+                                {{/if}}
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td>
+                            <div class="b-input">
+                                <div class="b-input__border">
+                                    <textarea class="b-input__textarea q{{number}}" data-question="q{{number}}" id="q{{number}}" name="q{{number}}"></textarea>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">
+                            <div class="b-task__separator">
+
+                            </div>
+                        </td>
+                    </tr>
+
+                    {{/each}}
+
+
+
+                    {{#if userData.length}}
+
+                    <tr>
+                        <td colspan="2">
+                            <div class="b-static-text">
+                                <h3>Расскажите нам о себе</h3>
+                            </div>
+                        </td>
+                    </tr>
+                    {{/if}}
+                    {{#each userData}}
+                    <tr>
+
+                        <td>
+                            {{#compare type "checkbox" operator="!="}}
+                            <label for="{{name}}" class="b-static-text {{#if validator.required}}b-static-text_weight_bold{{/if}}">
+                                {{text}}
+                            </label>
+                            {{/compare}}
+                        </td>
+
+                        <td>
+                            <div class="b-input">
+                                {{#compare type "file" operator="=="}}
+                                <input type="file" class="b-input__file" id="{{name}}" name="{{name}}" {{#if validator}}data-val="true"{{/if}}>
+
+                                {{/compare}}
+
+                                {{#compare type "text" operator="=="}}
+                                <div class="b-input__border">
+                                    <input type="text" class="b-input__text" id="{{name}}" name="{{name}}" {{#if validator}}data-val="true"{{/if}}
+                                    {{#if validator.required}}data-val-required="{{validator.required}}"{{/if}}
+                                    {{#if validator.email}}data-val-email="{{validator.email}}"{{/if}}>
+
+                                </div>
+
+                                {{/compare}}
+
+                                {{#compare type "select" operator="=="}}
+                                <select class="b-input__select" id="{{name}}" name="{{name}}" {{#if validator}}data-val="true"{{/if}}
+                                {{#if validator.required}}data-val-required="{{validator.required}}"{{/if}}>
+                                <option value="">Выбрать</option>
+                                {{#options}}
+                                <option value="{{.}}">{{.}}</option>
+                                {{/options}}
+                                </select>
+
+                                {{/compare}}
+
+                                {{#compare type "checkbox" operator="=="}}
+                                <input type="checkbox" class="b-input__checkbox" id="{{name}}" name="{{name}}" value="true" {{#if validator}}data-val="true"{{/if}}
+                                {{#if validator.required}}data-val-mandatory="{{validator.required}}"{{/if}}>
+                                <label for="{{name}}" class="b-static-text {{#if validator.required}}b-static-text_weight_bold{{/if}}">
+                                    {{text}}
+                                </label>
+
+                                {{/compare}}
+
+                                {{#compare type "textarea" operator="=="}}
+                                <div class="b-input__border">
+                                    <textarea class="b-input__textarea" id="{{name}}" name="{{name}}" {{#if validator}}data-val="true"{{/if}}
+                                    {{#if validator.required}}data-val-required="{{validator.required}}"{{/if}}></textarea>
+
+                                </div>
+
+
+                                {{/compare}}
+
+
+                                <label for="{{name}}" data-valmsg-for="{{name}}" data-valmsg-replace="true" class="b-input__error"></label>
+
+                                {{#if hint}}
+                                <div class="b-input__hint">{{hint}}</div>
+                                {{/if}}
+                            </div>
+                        </td>
+
+
+                    </tr>
+
+                    {{/each}}
+                    <tr>
+                        <td colspan="2">
+                            <input type="hidden" name="hidden" id="hidden" value="a" />
+                            <label for="hidden" data-valmsg-for="hidden" data-valmsg-replace="true" class="b-input__error"></label>
+                            
+                        </td>
+                    </tr>
+
+
+                    <tr>
+                        <td class="b-buttons" colspan="2">
+                            <div class="b-buttons__inner">
+                                    <input type="submit" value="Отправить">
+                                    <input type="reset" value="Очистить">
+                                </div>
+                            
+                                                       
+
+                        </td>
+                    </tr>
+
+                </table>
+            </div>
+
+        </form>
+    </script>
+
+
+    <script type="text/javascript" src="scripts/custom/init.js"></script>
+
+
+
+
+
+</head>
+<body>
+    <div class="b-to-top">
+        <div class="b-to-top__button" title="Наверх">
+            <span class="b-to-top__arrow">↑</span>
+        </div>
+    </div>
+    <div class="b-content">
+        <div class="b-rest-questions">
+            <span class="b-rest-questions__caption">Неотвеченных вопросов:&nbsp;</span>
+            <span class="b-rest-questions__value">0</span>
+        </div>
+        <div class="b-page-title">
+            <h1 class="b-page-title__title">Анкета второй Школы разработки интерфейсов в Москве</h1>
+        </div>
+        <div class="b-static-text">
+            <p>Яндекс открывает набор во вторую Школу разработки интерфейсов в Москве.</p>
+            <p>Для поступления необходимо заполнить анкету с тестовыми заданиями. Приём заявок закрывается 19 августа в 23:59 по московскому времени. По результатам теста мы пригласим в Школу 30-40 человек.</p><p>Подробности о Школе читайте на
+            <a href="http://events.yandex.ru/shri/" class="b-link" target="_blank">этой странице</a>
+        </p>
+        </div>
+
+    </div>
+</body>
+</html>

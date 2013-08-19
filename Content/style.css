@@ -70,6 +70,7 @@ body {
 
 .b-task__table {
     width: 100%;
+    font-size: 13px;
 }
 
 .b-task__table td {

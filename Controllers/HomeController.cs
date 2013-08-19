@@ -13,6 +13,12 @@ namespace Questionnaire.Controllers
 {
     public class HomeController : Controller
     {
+        [HttpGet]
+        public ActionResult Index()
+        {
+            return Redirect("~/index.html");
+        }
+
         [HttpPost]
         public ActionResult Save(HttpPostedFileBase cv)
         {
