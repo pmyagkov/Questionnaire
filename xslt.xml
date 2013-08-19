@@ -93,7 +93,7 @@
         <question name="q13">
             <text>
                 <![CDATA[Напишите на JavaScript функцию, которая выводит список всех чисел, которые равны сумме факториалов своих цифр. Пример такого числа:
-                    <p class="b-static-text b-static-text_weight_normal">4! + 0! + 5! + 8! + 5! = 40585</p>
+                    &lt;p class=&quot;b-static-text b-static-text_weight_normal&quot;&gt;4! + 0! + 5! + 8! + 5! = 40585&lt;/p&gt;
                     В качестве ответа на вопрос пришлите ссылку на <a href="http://jsfiddle.net/" class="b-link" target="_blank">http://jsfiddle.net/</a> с вашим кодом или на ваш репозиторий на <a href="https://github.com/" class="b-link" target="_blank">https://github.com/</a>.
                 ]]>
             </text>

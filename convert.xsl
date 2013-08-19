@@ -245,6 +245,11 @@
                                                             </option>
                                                         </xsl:for-each>
                                                     </select>
+                                                    <div class="b-input__border"  style="display:none; margin-top: 10px">
+                                                        <input type="text" class="b-input__text">
+                                                            <xsl:attribute name="name"><xsl:value-of select="name()"/>_o</xsl:attribute>
+                                                        </input>
+                                                    </div>
                                                 </xsl:if>
 
                                                 <xsl:if test="contains(@type, &apos;textarea&apos;)">

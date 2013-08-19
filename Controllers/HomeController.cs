@@ -65,7 +65,11 @@ namespace Questionnaire.Controllers
                 userInfo.Name = Server.HtmlEncode(form["name"]);
                 userInfo.Phone = Server.HtmlEncode(form["phone"]);
                 userInfo.Additional = Server.HtmlEncode(form["additional"]);
-                userInfo.Recommend = Server.HtmlEncode(form["recommend"]);
+
+                var recommend = string.Concat(form["recommend"],
+                    form.AllKeys.Contains("recommend_o") ? "→" + form["recommend_o"] : "");
+
+                userInfo.Recommend = Server.HtmlEncode(recommend);
 
                 var serializer = new DataContractSerializer(typeof(UserInfo));
 

@@ -14,8 +14,39 @@ jQuery(function ($) {
     $form.validate().settings["unhighlight"] = function (element, errorClass, validClass) {
         getHighlightElement(element).addClass(validClass).removeClass(errorClass);
     };
-
     $form.validate().settings["ignore"] = "";
+
+    $("select[name='recommend']").change(function (e) {
+        var $select = $(this);
+        if ($select.val() == "другое") {
+            $select.next().show();
+        }
+        else {
+            $select.next().hide().find("input").val("");
+        }
+    });
+
+
+    var agreeText = $("[for='agree'].b-static-text").text();
+    var beg =  agreeText.substr(0, 1);
+    var end = agreeText.substr(1);
+
+    $("[for='agree'].b-static-text").empty().append(beg).append($("<span class='name'/>")).append(end);
+
+
+    $("[name='name']").keyup(function (e) {
+        var name = $(this).val();
+        var $name =$("[for='agree'].b-static-text .name");
+        if (name.length) {
+            $name.text(', ' + name + ',');
+        }
+        else {
+            $name.text('');
+        }
+
+        var v = $("[for='agree'].b-static-text").val();
+
+    });
 
     $(".b-rest-questions__value").unanswered({});
     $(document).accordion({linkSelector: ".b-task__accord-pointer", containerSelector: "tr"});
